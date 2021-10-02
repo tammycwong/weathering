@@ -25,7 +25,7 @@ export default function SearchBox() {
         }
       }
     }
-    return setResults(matchingCities);
+    setResults(matchingCities);
     // console.log(matchingCities);
   }
 
@@ -41,9 +41,9 @@ export default function SearchBox() {
       {query.length > 3 && (
         <ul>
           {results.length > 0 ? (
-            results.map((city, index) => (
-              <li key={index}>
-                <Link href="/location/cityname">
+            results.map((city) => (
+              <li key={city.id}>
+                <Link href={`/location/${city.name.toLowerCase().replace(/ /g, "-")}-${city.id}`}>
                   <a>
                     {city.name}
                     {city.state ? `, ${city.state}` : null}
@@ -81,4 +81,5 @@ export default function SearchBox() {
 //           - some cities have a state tied to it- write conditional:
 //             - if there is a state, render `, ${city.state}` : ''
 //             - if not, render nothing
-//  if not, render "no reslts foun
+//  if not, render "no reslts found 
+
